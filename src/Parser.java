@@ -23,14 +23,29 @@ public class Parser {
 
 	private void checkHealth(String action) {
 
-		if (action.equalsIgnoreCase("eat")) {
-			status.getHealth().increaseHealth(1);
+		if (action.equalsIgnoreCase("eat")) { // up
+			status.getHealth().increaseHealth(0.5);
+			status.getWakefulness().increaseWakefulness(0.5);
+			status.getHunger().decreaseHunger(1);
+			status.getThirst().increaseThirst(1);
 		} else if (action.equalsIgnoreCase("sleep")) {
 			status.getHealth().increaseHealth(1);
-		}
-
-		if (action.equalsIgnoreCase("study")) {
+			status.getWakefulness().increaseWakefulness(1);
+			status.getHunger().increaseHunger(2);
+			status.getThirst().increaseThirst(2);
+		} else if (action.equalsIgnoreCase("study")) {
 			status.getHealth().decreaseHealth(1);
+			status.getWakefulness().decreaseWakefulness(2);
+			status.getHunger().increaseHunger(2);
+			status.getThirst().increaseThirst(2);
+		} else if (action.equalsIgnoreCase("fast")) { // down
+			status.getHealth().decreaseHealth(1);
+			status.getWakefulness().decreaseWakefulness(1);
+			status.getHunger().increaseHunger(1);
+			status.getThirst().increaseThirst(0.5);
+		} else if (action.equalsIgnoreCase("drink")) {
+			status.getHunger().decreaseHunger(0.5);
+			status.getThirst().decreaseThirst(1);
 		}
 
 	}
@@ -39,14 +54,29 @@ public class Parser {
 
 		if (action.equalsIgnoreCase("bench")) {
 			status.getFitness().increaseFitness(1);
-		} else if (action.equalsIgnoreCase("chin up")) {
+			status.getWakefulness().decreaseWakefulness(1);
+			status.getHunger().increaseHunger(1);
+			status.getThirst().increaseThirst(1);
+		} else if (action.equalsIgnoreCase("curl")) {
 			status.getFitness().increaseFitness(1);
-		} else if (action.equalsIgnoreCase("pull up")) {
+			status.getWakefulness().decreaseWakefulness(1);
+			status.getHunger().increaseHunger(0.25);
+			status.getThirst().increaseThirst(0.25);
+		} else if (action.equalsIgnoreCase("pull")) {
 			status.getFitness().increaseFitness(1);
+			status.getWakefulness().decreaseWakefulness(1);
+			status.getHunger().increaseHunger(1);
+			status.getThirst().increaseThirst(1);
 		} else if (action.equalsIgnoreCase("run")) {
-			status.getFitness().increaseFitness(25);
-		} else if(action.equalsIgnoreCase("swim")) {
-			status.getFitness().increaseFitness(50);
+			status.getFitness().increaseFitness(5);
+			status.getWakefulness().decreaseWakefulness(1);
+			status.getHunger().increaseHunger(1);
+			status.getThirst().increaseThirst(2);
+		} else if (action.equalsIgnoreCase("swim")) {
+			status.getFitness().increaseFitness(5);
+			status.getWakefulness().decreaseWakefulness(1);
+			status.getHunger().increaseHunger(1);
+			status.getThirst().increaseThirst(1);
 		}
 
 	}

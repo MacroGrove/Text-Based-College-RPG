@@ -17,7 +17,7 @@ public class Wakefulness extends JProgressBar {
 	private final static int MAX = 100;
 	private Border loweredetched;
 	private TitledBorder border;
-	private int wakefulness;
+	private double wakefulness;
 	private Color quarter;
 	private Color half;
 	private Color full;
@@ -55,39 +55,41 @@ public class Wakefulness extends JProgressBar {
 
 	}
 
-	public int getHealth() {
+	public double getWakefulness() {
 		return wakefulness;
 	}
 
-	public void setHealth(int health) {
-		this.wakefulness = health;
+	public void setWakefulness(double wakefulness) {
+		this.wakefulness = wakefulness;
 	}
 
-	public void decreaseHealth(int amount) {
+	public void decreaseWakefulness(double amount) {
 		if (wakefulness != MIN) {
 			wakefulness -= amount; // change variable
-			super.setValue(wakefulness); // change display
+			super.setValue((int) wakefulness); // change display
 			super.setString(wakefulness + "%");
 		}
 
-		if (wakefulness == MAX / 2) {
+		if (wakefulness < 50) {
 			super.setForeground(half);
-		} else if (wakefulness == MAX / 4) {
+		} else if (wakefulness < 25) {
 			super.setForeground(quarter);
 		}
 	}
 
-	public void increaseHealth(int amount) {
-		if (wakefulness != MAX) {
+	public void increaseWakefulness(double amount) {
+		if (wakefulness < MAX) {
 			wakefulness += amount; // change variable
-			super.setValue(wakefulness); // change display
+			super.setValue((int) wakefulness); // change display
 			super.setString(wakefulness + "%");
 		}
-		
-		if (wakefulness == MAX / 2) {
+
+		if (wakefulness > 50) {
 			super.setForeground(full);
-		} else if (wakefulness == MAX / 4) {
+		} else if (wakefulness > 25) {
 			super.setForeground(half);
+		} else if (wakefulness > 0) {
+			super.setForeground(quarter);
 		}
 	}
 

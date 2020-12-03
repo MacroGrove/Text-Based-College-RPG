@@ -17,7 +17,7 @@ public class Health extends JProgressBar {
 	private final static int MAX = 100;
 	private Border loweredetched;
 	private TitledBorder border;
-	private int health;
+	private double health;
 	private Color quarter;
 	private Color half;
 	private Color full;
@@ -55,39 +55,41 @@ public class Health extends JProgressBar {
 
 	}
 
-	public int getHealth() {
+	public double getHealth() {
 		return health;
 	}
 
-	public void setHealth(int health) {
+	public void setHealth(double health) {
 		this.health = health;
 	}
 
-	public void decreaseHealth(int amount) {
-		if (health != MIN) {
+	public void decreaseHealth(double amount) {
+		if (health > MIN) {
 			health -= amount; // change variable
-			super.setValue(health); // change display
+			super.setValue((int) health); // change display
 			super.setString(health + "%");
 		}
 
-		if (health == MAX / 2) {
+		if (health < 50) {
 			super.setForeground(half);
-		} else if (health == MAX / 4) {
+		} else if (health < 25) {
 			super.setForeground(quarter);
 		}
 	}
 
-	public void increaseHealth(int amount) {
-		if (health != MAX) {
+	public void increaseHealth(double amount) {
+		if (health < MAX) {
 			health += amount; // change variable
-			super.setValue(health); // change display
+			super.setValue((int) health); // change display
 			super.setString(health + "%");
 		}
 
-		if (health == MAX / 2) {
+		if (health > 50) {
 			super.setForeground(full);
-		} else if (health == MAX / 4) {
+		} else if (health > 25) {
 			super.setForeground(half);
+		} else if (health > 0) {
+			super.setForeground(quarter);
 		}
 	}
 

@@ -17,7 +17,7 @@ public class Hunger extends JProgressBar {
 	private final static int MAX = 100;
 	private Border loweredetched;
 	private TitledBorder border;
-	private int hunger;
+	private double hunger;
 	private Color quarter;
 	private Color half;
 	private Color full;
@@ -45,49 +45,50 @@ public class Hunger extends JProgressBar {
 
 		// colors
 		super.setBackground(Color.lightGray);
-		super.setForeground(quarter);
+		super.setForeground(full);
 		super.setStringPainted(true);
 		super.setString(hunger + "%");
-
 
 		super.setValue(MIN);
 		super.setVisible(true);
 
 	}
 
-	public int getHunger() {
+	public double getHunger() {
 		return hunger;
 	}
 
-	public void setHUnger(int fitness) {
-		this.hunger = fitness;
+	public void setHUnger(double hunger) {
+		this.hunger = hunger;
 	}
 
-	public void decreaseHunger(int amount) {
-		if (hunger != MIN) {
+	public void decreaseHunger(double amount) {
+		if (hunger > MIN) {
 			hunger -= amount; // change variable
-			super.setValue(hunger); // change display
+			super.setValue((int) hunger); // change display
 			super.setString(hunger + "%");
 		}
 
-		if (hunger == MAX / 2) {
-			super.setForeground(half);
-		} else if (hunger == MAX / 2) {
+		if (hunger < 25) {
 			super.setForeground(full);
+		} else if (hunger < 50) {
+			super.setForeground(half);
 		}
 	}
 
-	public void increaseHunger(int amount) {
-		if (hunger != MAX) {
+	public void increaseHunger(double amount) {
+		if (hunger < MAX) {
 			hunger += amount; // change variable
-			super.setValue(hunger); // change display
+			super.setValue((int) hunger); // change display
 			super.setString(hunger + "%");
 		}
-		
-		if (hunger == MAX / 2) {
-			super.setForeground(full);
-		} else if (hunger == MAX / 4) {
+
+		if (hunger > 50) {
+			super.setForeground(quarter);
+		} else if (hunger > 25) {
 			super.setForeground(half);
+		} else {
+			super.setForeground(full);
 		}
 	}
 

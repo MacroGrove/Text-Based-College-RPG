@@ -17,7 +17,7 @@ public class Thirst extends JProgressBar {
 	private final static int MAX = 100;
 	private Border loweredetched;
 	private TitledBorder border;
-	private int thirst;
+	private double thirst;
 	private Color quarter;
 	private Color half;
 	private Color full;
@@ -54,39 +54,41 @@ public class Thirst extends JProgressBar {
 
 	}
 
-	public int getThirst() {
+	public double getThirst() {
 		return thirst;
 	}
 
-	public void setThirst(int fitness) {
-		this.thirst = fitness;
+	public void setThirst(double thirst) {
+		this.thirst = thirst;
 	}
 
-	public void decreaseHunger(int amount) {
+	public void decreaseThirst(double amount) {
 		if (thirst != MIN) {
 			thirst -= amount; // change variable
-			super.setValue(thirst); // change display
+			super.setValue((int) thirst); // change display
 			super.setString(thirst + "%");
 		}
 
-		if (thirst == MAX / 2) {
-			super.setForeground(half);
-		} else if (thirst == MAX / 2) {
+		if (thirst < 25) {
 			super.setForeground(full);
+		} else if (thirst < 50) {
+			super.setForeground(half);
 		}
 	}
 
-	public void increaseFitness(int amount) {
-		if (thirst != MAX) {
+	public void increaseThirst(double amount) {
+		if (thirst < MAX) {
 			thirst += amount; // change variable
-			super.setValue(thirst); // change display
+			super.setValue((int) thirst); // change display
 			super.setString(thirst + "%");
 		}
-		
-		if (thirst == MAX / 2) {
-			super.setForeground(full);
-		} else if (thirst == MAX / 4) {
+
+		if (thirst > 50) {
+			super.setForeground(quarter);
+		} else if (thirst > 25) {
 			super.setForeground(half);
+		} else {
+			super.setForeground(full);
 		}
 	}
 

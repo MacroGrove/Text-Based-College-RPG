@@ -54,39 +54,41 @@ public class Fitness extends JProgressBar {
 
 	}
 
-	public double getHealth() {
+	public double getFitness() {
 		return fitness;
 	}
 
-	public void setHealth(double fitness) {
+	public void setFitness(double fitness) {
 		this.fitness = fitness;
 	}
 
 	public void decreaseFitness(double amount) {
-		if (fitness != MIN) {
+		if (fitness > MIN) {
 			fitness -= amount; // change variable
 			super.setValue((int) fitness); // change display
 			super.setString(fitness + "%");
 		}
 
-		if (fitness == MAX / 2) {
+		if (fitness < 50) {
 			super.setForeground(half);
-		} else if (fitness == MAX / 4) {
+		} else if (fitness < 25) {
 			super.setForeground(quarter);
 		}
 	}
 
 	public void increaseFitness(double amount) {
-		if (fitness != MAX) {
+		if (fitness < MAX) {
 			fitness += amount; // change variable
 			super.setValue((int)fitness); // change display
 			super.setString(fitness + "%");
 		}
 
-		if (fitness == MAX / 2) {
+		if (fitness > 50) {
 			super.setForeground(full);
-		} else if (fitness == MAX / 4) {
+		} else if (fitness > 25) {
 			super.setForeground(half);
+		} else {
+			super.setForeground(quarter);
 		}
 	}
 

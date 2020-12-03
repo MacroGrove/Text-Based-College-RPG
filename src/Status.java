@@ -64,8 +64,20 @@ public class Status extends JPanel {
 		return health;
 	}
 
+	public Wakefulness getWakefulness() {
+		return wakefulness;
+	}
+
 	public Fitness getFitness() {
 		return fitness;
+	}
+	
+	public Hunger getHunger() {
+		return hunger;
+	}
+	
+	public Thirst getThirst() {
+		return thirst;
 	}
 
 }
