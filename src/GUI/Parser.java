@@ -1,3 +1,4 @@
+package GUI;
 
 public class Parser {
 
@@ -28,16 +29,19 @@ public class Parser {
 			status.getWakefulness().increaseWakefulness(0.5);
 			status.getHunger().decreaseHunger(1);
 			status.getThirst().increaseThirst(1);
+			output.addMessage("You ate some food.");
 		} else if (action.equalsIgnoreCase("sleep")) {
 			status.getHealth().increaseHealth(1);
 			status.getWakefulness().increaseWakefulness(1);
 			status.getHunger().increaseHunger(2);
 			status.getThirst().increaseThirst(2);
+			output.addMessage("You slept an hour.");
 		} else if (action.equalsIgnoreCase("study")) {
 			status.getHealth().decreaseHealth(1);
 			status.getWakefulness().decreaseWakefulness(2);
 			status.getHunger().increaseHunger(2);
 			status.getThirst().increaseThirst(2);
+			output.addMessage("You studied for an hour.");
 		} else if (action.equalsIgnoreCase("fast")) { // down
 			status.getHealth().decreaseHealth(1);
 			status.getWakefulness().decreaseWakefulness(1);
@@ -46,6 +50,7 @@ public class Parser {
 		} else if (action.equalsIgnoreCase("drink")) {
 			status.getHunger().decreaseHunger(0.5);
 			status.getThirst().decreaseThirst(1);
+			output.addMessage("You drank some water.");
 		}
 
 	}
