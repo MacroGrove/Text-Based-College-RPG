@@ -36,16 +36,6 @@ public class Output extends JPanel {
 		super.setBorder(border);
 		super.setMinimumSize(new Dimension(WIDTH - 300, HEIGHT - 200));
 		super.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-
-//		Message m;
-//		String s = "";
-//		for (int i = 0; i < 10; i++) {
-//			s = "  You've entered room ";
-//			s += String.valueOf(i);
-//			m = new Message(s, s);
-//			m.render();
-//			super.add(m);
-//		}
 	}
 
 	/**

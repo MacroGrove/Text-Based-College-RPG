@@ -77,6 +77,7 @@ public class Input extends JPanel implements KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if(text.getText() != null) {
 				parser.react(text.getText());
+//				text.setText("");
 			}
 		}
 
